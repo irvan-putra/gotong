@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gotong - distributed AI training from Jakarta: feasibility notes</title>
+<style>
+  body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:820px;margin:0 auto;padding:24px 16px;color:#1c2833;line-height:1.55}
+  h1{font-size:1.6rem;margin-bottom:0.2rem}
+  h2{font-size:1.15rem;margin-top:2rem;border-bottom:1px solid #d5dbdb;padding-bottom:4px}
+  .badge{display:inline-block;background:#f39c12;color:#fff;border-radius:4px;padding:2px 8px;font-size:0.75rem;vertical-align:middle;margin-left:8px}
+  .note{background:#fdf2e9;border-left:4px solid #f39c12;padding:10px 14px;border-radius:0 4px 4px 0;font-size:0.92rem}
+  pre{background:#f4f6f6;padding:12px;border-radius:6px;overflow-x:auto;font-size:0.88rem}
+  img{max-width:100%;border:1px solid #d5dbdb;border-radius:6px;margin:8px 0}
+  a{color:#2980b9}
+  footer{margin-top:2.5rem;font-size:0.82rem;color:#7f8c8d;border-top:1px solid #d5dbdb;padding-top:12px}
+</style>
+</head>
+<body>
+<h1>gotong <span class="badge">research notes - idea stage</span></h1>
+<p>How feasible is distributed AI training from Jakarta, Indonesia, and how can
+people contribute? The full notes live in the
+<a href="https://github.com/irvan-putra/gotong">GitHub repository</a>.</p>
+
+<h2>What runs where</h2>
+<p class="note">This page is a static overview. The analysis below was produced by
+<code>feasibility_model.py</code>, which runs <strong>locally with Python</strong> -
+nothing runs in your browser, and no live swarm, GPU, or paid compute is involved.</p>
+
+<h2>Run it yourself</h2>
+<pre>git clone https://github.com/irvan-putra/gotong.git
+cd gotong
+python3 -m pip install matplotlib        # only needed for --viz
+python3 feasibility_model.py                  # text report
+python3 feasibility_model.py --viz feasibility.png   # charts (needs matplotlib)</pre>
+<p>Defaults model a 12B-parameter example; override with
+<code>--params-b</code>, <code>--workers</code>, <code>--step-time</code>,
+<code>--inner-steps</code>, <code>--compression</code>.</p>
+
+<h2>Visual results</h2>
+<a href="assets/feasibility.png"><img src="assets/feasibility.png" alt="Transfer time of one sync payload at three upload speeds vs the outer interval, and monthly cost scenarios (GPU amortization + modeled power + network)"></a>
+<p style="font-size:0.8rem;color:#7f8c8d;margin-top:0">tap the image to open it full size</p>
+<p>What the model shows, using the dated public figures in the README:</p>
+<ul>
+  <li>One sync event for a 12B fp16 model is a ~42 GB payload per node (ring
+  all-reduce, 8 workers). Syncing 500x less often does not shrink that payload -
+  it just sends it less frequently. At the Indonesia-wide median upload
+  (26.6 Mbps, Ookla Aug-Oct 2025 - not Jakarta-only) the transfer would take
+  ~3.5 hours, far beyond the 16.7-minute outer interval at H=500; only a 1 Gbps
+  link (~6 min) fits inside it. Real runs shrink payloads (quantization,
+  sparsification), train smaller models, or use much longer intervals.</li>
+  <li>Synchronous training would need the same payload every 2-second step:
+  ~168 Gbps sustained, impossible on home internet by orders of magnitude.
+  Decoupled DiLoCo's published 840 Mbps is a measured point from Google's
+  datacenter workload - scale reference only, not home-internet evidence.</li>
+  <li>GPU amortization + modeled power + fiber land near Rp1.4jt/month
+  (Starlink variant: past Rp2.1jt). This excludes the rest of the rig
+  (CPU/board/RAM/storage), tax, cooling and maintenance, and the used-GPU
+  price is not a claim that a full 12B training rig is feasible at that price.</li>
+</ul>
+
+<h2>Status and caveats</h2>
+<p>Everything here is a model over dated, sourced figures compiled on 15 Nov 2026
+- nothing was measured from an Indonesian home connection, and the bandwidth
+medians are Indonesia-wide, not Jakarta-specific. The biggest claims in
+the field (40B pretraining over the internet, DiLoCo at frontier scale) come from
+the teams proposing them. See the README's caveats and sources.</p>
+
+<footer>Research notes and a small calculator. No license selected.</footer>
+</body>
+</html>
