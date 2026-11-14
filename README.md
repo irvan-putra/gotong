@@ -98,3 +98,23 @@ Jakarta figures:
 - Used RTX 3090 listings: https://biggo.id/s/rtx%203090%20second
 - GPU retail pricing report: https://www.murdockcruz.com/2025/07/07/harga-vga-baru-2025-masih-gila-rtx-5090-5080-naik-lebih-dari-50-dari-msrp/
 - Span homes as mini data centers (Scientific American via Yahoo): https://tech.yahoo.com/ai/articles/span-wants-turn-homes-mini-120000696.html
+
+## Runnable prototype
+
+`feasibility_model.py` turns the dated figures above into a small calculator:
+the per-node sync payload, its transfer time and average rate for
+synchronous vs DiLoCo-style training compared with measured Indonesia-wide
+home-internet medians, and monthly cost scenarios (GPU amortization, modeled
+power, network - excluding the rest of the rig, tax and cooling). It is a model over the cited figures,
+not a measurement from an Indonesian home connection.
+
+    python3 feasibility_model.py                 # text report
+    python3 feasibility_model.py --viz feasibility.png   # charts (needs matplotlib)
+
+See `TESTING.md` for verified commands, dependencies, and known limits.
+
+## Project site
+
+When GitHub Pages is enabled (from `docs/`), an overview site with run
+instructions and the generated charts is at
+https://irvan-putra.github.io/gotong/ .
