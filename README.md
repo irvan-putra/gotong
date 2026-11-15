@@ -124,7 +124,3 @@ https://irvan-putra.github.io/gotong/ .
 Suggestion, not a commitment or a result: replace assumptions with measured
 upload and transfer times before trying a training node. Keep measurements
 private initially.
-
-Across the four sibling repos (gotong, mimpi, anyam, jejak): choose just
-one next rather than abandoning the others; jejak is the suggested first
-pick as the clearest, lowest-commitment test.
