@@ -118,3 +118,13 @@ See `TESTING.md` for verified commands, dependencies, and known limits.
 When GitHub Pages is enabled (from `docs/`), an overview site with run
 instructions and the generated charts is at
 https://irvan-putra.github.io/gotong/ .
+
+## Suggested next experiment (15 Nov 2026)
+
+Suggestion, not a commitment or a result: replace assumptions with measured
+upload and transfer times before trying a training node. Keep measurements
+private initially.
+
+Across the four sibling repos (gotong, mimpi, anyam, jejak): choose just
+one next rather than abandoning the others; jejak is the suggested first
+pick as the clearest, lowest-commitment test.
