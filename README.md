@@ -5,6 +5,7 @@ Research notes on how feasible distributed AI training is from Jakarta, Indonesi
 ## The short answer
 
 - [Psyche: who coordinates and who applies the results](docs/psyche-topology.md) - Nous's documented coordinator, peer-to-peer exchange and checkpoints, plus limits of this check.
+- [Psyche: who applies the results, in code](docs/psyche-code-reading.md) - a source reading at a pinned commit; read only, not built or run.
 
 Feasible to join from Jakarta, with one honest caveat: the lightest door (a Petals server) is verifiably open today, while the big headline runs are gated or between rounds. The low-communication training methods behind them need home-internet bandwidth rather than datacenter interconnects, and Jakarta's connectivity clears that bar on paper. Running a Jakarta-organized large training run is unproven.
 
