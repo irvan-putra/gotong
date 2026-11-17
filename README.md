@@ -127,3 +127,10 @@ https://irvan-putra.github.io/gotong/ .
 Suggestion, not a commitment or a result: replace assumptions with measured
 upload and transfer times before trying a training node. Keep measurements
 private initially.
+
+
+## Illustration
+
+![Illustration of a hypothetical Jakarta home-GPU mesh, with city buildings connected by network lines.](assets/illustrations/jakarta-network.png)
+
+*Illustration only, not evidence from measurements or an operating network.*
