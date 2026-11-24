@@ -134,3 +134,7 @@ private initially.
 ![Illustration of a hypothetical Jakarta home-GPU mesh, with city buildings connected by network lines.](assets/illustrations/jakarta-network.png)
 
 *Illustration only, not evidence from measurements or an operating network.*
+
+---
+
+Built with AI assistance (Instinct and others). Not everything has been reviewed by Irvan.
